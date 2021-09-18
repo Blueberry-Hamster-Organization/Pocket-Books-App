@@ -14,19 +14,23 @@ libraryApp.getBooks();
 libraryApp.getBooks = () => {
   libraryApp.form.addEventListener('submit', function(event){
     event.preventDefault();
-    fetch('https://openlibrary.org/subjects/fantasy.json')
+    const formInput = document.querySelector('select');
+    const userInput = formInput.value;
+
+    fetch(`https://openlibrary.org/subjects/${userInput}.json?limit=100`)
     .then((response) => {
       return response.json();
     })
     .then((jsonResponse) => {
-      console.log(jsonResponse)
+      // call display function goes here
     })
   });
 }
+
 //  - Attach an event listener to the button so that when the user clicks, it makes the an 
 //    API call using the selection from the dropdown menu as a parameter to get 10 results
 //  - Store the results of the API call in an array
-//  - Then this function will call the Display Results Function PASSING the Array as an arugment.
+//  - Then this function will call the Display Results Function PASSING the Array as an argument.
 
 // Write a function to display the results
 //  - Get the title, the cover, the author and the publication year and store each in variables.
