@@ -11,6 +11,8 @@ libraryApp.getBooks();
 
   
 // Write a function to make an api call
+//  - Attach an event listener to the button so that when the user clicks, it makes the an 
+//    API call using the selection from the dropdown menu as a parameter to get 10 results
 libraryApp.getBooks = () => {
   libraryApp.form.addEventListener('submit', function(event){
     event.preventDefault();
@@ -23,13 +25,12 @@ libraryApp.getBooks = () => {
     })
     .then((jsonResponse) => {
       // call display function goes here
+      libraryApp.bookDisplay(jsonResponse.works);
     })
   });
 }
 
-//  - Attach an event listener to the button so that when the user clicks, it makes the an 
-//    API call using the selection from the dropdown menu as a parameter to get 10 results
-//  - Store the results of the API call in an array
+
 //  - Then this function will call the Display Results Function PASSING the Array as an argument.
 
 // Write a function to display the results
@@ -37,6 +38,16 @@ libraryApp.getBooks = () => {
 //  - Write a for each loop, that will create a new Li element for each result,
 //    and display the cover, author, publication, and title in the <Li>
 //  - Append the new <Li> elements to the page
+  
+libraryApp.bookDisplay = (bookArray) => {
+  console.log(bookArray);
+  bookArray.forEach((book) => {
+    const bookTitle = book.title;
+    const bookAuthor = book.authors[0].name;
+    const bookCover = `http://covers.openlibrary.org/b/id/${book.cover_id}.jpg`;
+    console.log(bookTitle, bookAuthor, bookCover)
+  })
+};
 
 // Put the init funtion at the bottom of our JS script file. 
 
