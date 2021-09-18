@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>My Little Library</title>
 </head>
+
 <body>
-    <h1>test</h1>
+    <header>
+        <h1>My Little Library</h1>
+    </header> <!-- end of header-->
+    
+    <main>
+        <form action="submit" method="#" class="bookForm" autocomplete="off" name="bookForm">
+        
+            <label for="bookForm">What do you want to read?</label>
+            <select name="bookCategory" id="bookCategory">
+                <option value="fantasy">Fantasy</option>
+                <option value="horror">Horro</option>
+                <option value="romance">Romance</option>
+                <option value="sciFi">Science-fiction</option>
+                <option value="humor">Humor</option>
+            </select>
+            <button>Submit</button>
+        </form> <!-- end of bookForm-->
+    
+        <section class="result">
+            <ul class="bookResult">  </ul>
+        </section> <!-- end of result section-->
+        
+    </main> <!-- end of main-->
+    
+
+    <footer>
+        <p>Created at <a href="junocollege.com">Juno College</a></p>
+    </footer> <!-- end of footer-->
+
+
+    <script src="./scripts/scripts.js"></script>
 </body>
 </html>
