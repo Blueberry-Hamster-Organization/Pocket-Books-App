@@ -35,6 +35,7 @@ libraryApp.filterFunction = (jsonResponse) => {
   const fullArray = jsonResponse;
   const smallArray = fullArray.slice(0, 10)
   libraryApp.bookDisplay(smallArray)
+  // const newArray = fullArray.splice(0, 10)
 }
 
 
