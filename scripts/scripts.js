@@ -3,11 +3,11 @@ const libraryApp = {};
 // Create an init funtion
 //  -This function will call the API call function
 libraryApp.form = document.querySelector('form');
+libraryApp.ulElement = document.querySelector('.bookResult');
 
 libraryApp.init = () => {
 libraryApp.getBooks();
 }
-
 
   
 // Write a function to make an api call
@@ -25,27 +25,40 @@ libraryApp.getBooks = () => {
     })
     .then((jsonResponse) => {
       // call display function goes here
-      libraryApp.bookDisplay(jsonResponse.works);
+      libraryApp.ulElement.innerHTML = '';
+      libraryApp.filterFunction(jsonResponse.works);
     })
   });
 }
 
+libraryApp.filterFunction = (jsonResponse) => {
+  const fullArray = jsonResponse;
+  const smallArray = fullArray.slice(0, 10)
+  libraryApp.bookDisplay(smallArray)
+}
 
-//  - Then this function will call the Display Results Function PASSING the Array as an argument.
 
 // Write a function to display the results
-//  - Get the title, the cover, the author and the publication year and store each in variables.
-//  - Write a for each loop, that will create a new Li element for each result,
-//    and display the cover, author, publication, and title in the <Li>
-//  - Append the new <Li> elements to the page
-  
 libraryApp.bookDisplay = (bookArray) => {
-  console.log(bookArray);
+  //  - Get the title, the cover, the author and the publication year and store each in variables.
+  
+  //  - Write a for each loop, that will create a new Li element for each result,
+//    and display the cover, author, publication, and title in the <Li>
   bookArray.forEach((book) => {
     const bookTitle = book.title;
     const bookAuthor = book.authors[0].name;
     const bookCover = `http://covers.openlibrary.org/b/id/${book.cover_id}.jpg`;
-    console.log(bookTitle, bookAuthor, bookCover)
+    const newLiElement = document.createElement('li');
+    newLiElement.innerHTML = 
+    `<li>
+    <img src="${bookCover}" alt="Cover for ${bookTitle}">
+    <p class="bookTitle">${bookTitle}</p>
+    <p class="bookAuthor">${bookAuthor}</p>
+    </li>  
+    `
+    //  - Append the new <Li> elements to the page
+    
+    libraryApp.ulElement.append(newLiElement)
   })
 };
 
