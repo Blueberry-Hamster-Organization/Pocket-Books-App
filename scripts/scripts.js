@@ -26,26 +26,23 @@ libraryApp.getBooks = () => {
     .then((jsonResponse) => {
       // call display function goes here
       libraryApp.ulElement.innerHTML = '';
-      libraryApp.filterFunction(jsonResponse.works);
+      libraryApp.hundredBooks = jsonResponse.works;
     })
   });
-}
-
-libraryApp.filterFunction = (jsonResponse) => {
-  const fullArray = jsonResponse;
-  const smallArray = fullArray.slice(0, 10)
-  libraryApp.bookDisplay(smallArray)
-  // const newArray = fullArray.splice(0, 10)
-}
-
+} 
 
 // Write a function to display the results
-libraryApp.bookDisplay = (bookArray) => {
-  //  - Get the title, the cover, the author and the publication year and store each in variables.
+libraryApp.bookDisplay = () => {
+  const tenBooks = [];
   
+  // forloop to display 10 results at a time and keep adding 10
+  for(let i = 0; i < 10; i++) {
+    tenBooks.push(libraryApp.hundredBooks.shift());
+  }
   //  - Write a for each loop, that will create a new Li element for each result,
-//    and display the cover, author, publication, and title in the <Li>
-  bookArray.forEach((book) => {
+  //    and display the cover, author, publication, and title in the <Li>
+  tenBooks.forEach((book) => {
+    //  - Get the title, the cover, the author and the publication year and store each in variables.
     const bookTitle = book.title;
     const bookAuthor = book.authors[0].name;
     const bookCover = `http://covers.openlibrary.org/b/id/${book.cover_id}.jpg`;
@@ -61,8 +58,15 @@ libraryApp.bookDisplay = (bookArray) => {
     
     libraryApp.ulElement.append(newLiElement)
   })
-};
 
-// Put the init funtion at the bottom of our JS script file. 
+}
+// Put the init function at the bottom of our JS script file. 
 
 libraryApp.init()
+
+
+// STRETCH GOAL PSEUDOCODE
+// Add eventlistener to click on book cover img
+//  - Get the key property value from the book object
+//  - make an API call to the openlibrary.works/${key}
+//  - display the description/summary of the book in a modal 
