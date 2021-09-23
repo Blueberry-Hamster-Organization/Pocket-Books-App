@@ -27,6 +27,7 @@ libraryApp.getBooks = () => {
       // call display function goes here
       libraryApp.ulElement.innerHTML = '';
       libraryApp.hundredBooks = jsonResponse.works;
+      libraryApp.bookDisplay();
     })
   });
 } 
@@ -57,16 +58,31 @@ libraryApp.bookDisplay = () => {
     //  - Append the new <Li> elements to the page
     
     libraryApp.ulElement.append(newLiElement)
-  })
+  });
+};
 
-}
+libraryApp.moreBooksButton = document.querySelector('.viewMore');
+libraryApp.moreBooksButton.addEventListener('click', () => {
+    libraryApp.bookDisplay();
+  });
+
+
+
+
+  
 // Put the init function at the bottom of our JS script file. 
 
 libraryApp.init()
 
+// Add event listener for "click" to the get more books button
+
 
 // STRETCH GOAL PSEUDOCODE
-// Add eventlistener to click on book cover img
+// Add eventlistener to click on book cover img needs event.target?
 //  - Get the key property value from the book object
 //  - make an API call to the openlibrary.works/${key}
-//  - display the description/summary of the book in a modal 
+//      -store the description property in a variable
+//  - display the description/summary of the book in a modal
+//      -Create a div for the modalBackground
+//      -Create a div for the modal itself
+//      -on "Click" change display to visible for background and modal
