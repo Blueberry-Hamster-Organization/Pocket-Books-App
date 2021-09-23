@@ -47,11 +47,12 @@ libraryApp.bookDisplay = () => {
     const bookTitle = book.title;
     const bookAuthor = book.authors[0].name;
     const bookCover = `http://covers.openlibrary.org/b/id/${book.cover_id}.jpg`;
+    const bookKey = book.key;
     
     const newLiElement = document.createElement('li');
     newLiElement.innerHTML = 
     `<li>
-    <img src="${bookCover}" alt="Cover for ${bookTitle}" class="coverImage" onclick="libraryApp.modalFunction()">
+    <img src="${bookCover}" alt="Cover for ${bookTitle}" class="coverImage" id=${bookKey}>
     <p class="bookTitle">${bookTitle}</p>
     <p class="bookAuthor">${bookAuthor}</p>
     </li>  
@@ -59,6 +60,7 @@ libraryApp.bookDisplay = () => {
     //  - Append the new <Li> elements to the page
     libraryApp.ulElement.append(newLiElement)
     libraryApp.modalFunction(book)
+    // console.log(book);
   });
 }
 
@@ -72,15 +74,36 @@ libraryApp.moreBooksButton.addEventListener('click', () => {
 
 libraryApp.modalFunction = (book) => {
   // make API call using book key
-  // const bookCover = document.queryselector('.coverImage')
-  // bookcover.addeventlistener('click', () => {see api call below})
-  const bookKey = book.key;
+  
+  const bookCover = document.getElementById(book.key)
+  bookCover.addEventListener('click', () => {
+    // console.log(event.target);
+    fetch(`https://openlibrary.org${book.key}.json`)
+      .then((response) => {
+      return response.json()
+    }).then((jsonResponse) => {
+      console.log(jsonResponse);
+      const bookDescription = jsonResponse.description;
+      const descriptionText = bookDescription.value;
 
-  fetch(`https://openlibrary.org${bookKey}.json`)
-  .then((response) => {
-    return response.json()
-  }).then((jsonResponse) => {
-    console.log(jsonResponse)
+      const modalText = document.querySelector('.modalText')
+      if (descriptionText !== undefined) {
+        modalText.innerHTML = '';
+        modalText.append(descriptionText);
+      } else {
+        modalText.innerHTML = '';
+        modalText.append(bookDescription);
+      }
+      
+      const modalBackground = document.querySelector('.modalBackground');
+      modalBackground.classList.toggle('show');
+
+      
+      const closeButton = document.querySelector('#closeModalButton');
+      closeButton.addEventListener('click', () => {
+        modalBackground.classList.remove('show');
+      })
+    })
   })
 }
 
