@@ -76,7 +76,7 @@ libraryApp.modalFunction = (book) => {
   // bookcover.addeventlistener('click', () => {see api call below})
   const bookKey = book.key;
 
-  fetch(`https://openlibrary.org${bookKey}`)
+  fetch(`https://openlibrary.org${bookKey}.json`)
   .then((response) => {
     return response.json()
   }).then((jsonResponse) => {
