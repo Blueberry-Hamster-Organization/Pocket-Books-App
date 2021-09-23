@@ -47,26 +47,42 @@ libraryApp.bookDisplay = () => {
     const bookTitle = book.title;
     const bookAuthor = book.authors[0].name;
     const bookCover = `http://covers.openlibrary.org/b/id/${book.cover_id}.jpg`;
+    
     const newLiElement = document.createElement('li');
     newLiElement.innerHTML = 
     `<li>
-    <img src="${bookCover}" alt="Cover for ${bookTitle}">
+    <img src="${bookCover}" alt="Cover for ${bookTitle}" class="coverImage" onclick="libraryApp.modalFunction()">
     <p class="bookTitle">${bookTitle}</p>
     <p class="bookAuthor">${bookAuthor}</p>
     </li>  
     `
     //  - Append the new <Li> elements to the page
-    
     libraryApp.ulElement.append(newLiElement)
+    libraryApp.modalFunction(book)
   });
-};
+}
 
+
+// Get more books displayed each time we click the get more books button
 libraryApp.moreBooksButton = document.querySelector('.viewMore');
 libraryApp.moreBooksButton.addEventListener('click', () => {
-    libraryApp.bookDisplay();
-  });
+  libraryApp.bookDisplay();
+});
 
 
+libraryApp.modalFunction = (book) => {
+  // make API call using book key
+  // const bookCover = document.queryselector('.coverImage')
+  // bookcover.addeventlistener('click', () => {see api call below})
+  const bookKey = book.key;
+
+  fetch(`https://openlibrary.org${bookKey}`)
+  .then((response) => {
+    return response.json()
+  }).then((jsonResponse) => {
+    console.log(jsonResponse)
+  })
+}
 
 
   
