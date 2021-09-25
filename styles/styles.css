@@ -92,6 +92,10 @@ button {
     overflow-y: auto;
 }
 
+.modalIcon {
+  height: 50px;
+}
+
 .modalText {
   padding: 20px;
 }
