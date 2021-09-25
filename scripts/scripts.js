@@ -28,6 +28,8 @@ libraryApp.getBooks = () => {
       libraryApp.ulElement.innerHTML = '';
       libraryApp.hundredBooks = jsonResponse.works;
       libraryApp.bookDisplay();
+      libraryApp.moreBooksButton.classList.toggle('show')
+      libraryApp.moreBooksButton.classList.remove('viewMore')
     })
   });
 } 
@@ -37,7 +39,7 @@ libraryApp.bookDisplay = () => {
   const tenBooks = [];
   
   // forloop to display 10 results at a time and keep adding 10
-  for(let i = 0; i < 10; i++) {
+  for(let i = 0; i < 8; i++) {
     tenBooks.push(libraryApp.hundredBooks.shift());
   }
   //  - Write a for each loop, that will create a new Li element for each result,
@@ -51,16 +53,14 @@ libraryApp.bookDisplay = () => {
     
     const newLiElement = document.createElement('li');
     newLiElement.innerHTML = 
-    `<li>
-    <img src="${bookCover}" alt="Cover for ${bookTitle}" class="coverImage" id=${bookKey}>
+    `
+    <img src="${bookCover}" alt="Cover for ${bookTitle}" class="coverImage" id=${bookKey} tabindex="0">
     <p class="bookTitle">${bookTitle}</p>
     <p class="bookAuthor">${bookAuthor}</p>
-    </li>  
     `
     //  - Append the new <Li> elements to the page
     libraryApp.ulElement.append(newLiElement)
     libraryApp.modalFunction(book)
-    // console.log(book);
   });
 }
 
@@ -82,17 +82,21 @@ libraryApp.modalFunction = (book) => {
       .then((response) => {
       return response.json()
     }).then((jsonResponse) => {
-      console.log(jsonResponse);
       const bookDescription = jsonResponse.description;
       const descriptionText = bookDescription.value;
+      const errorText = "Sorry! No description exists on Open Library for this book. Maybe you could add it!"
 
       const modalText = document.querySelector('.modalText')
-      if (descriptionText !== undefined) {
+      if (descriptionText == undefined && bookDescription == undefined) {
         modalText.innerHTML = '';
-        modalText.append(descriptionText);
-      } else {
+        modalText.append(errorText)
+        ;
+      } else if (descriptionText == undefined) {
         modalText.innerHTML = '';
         modalText.append(bookDescription);
+      } else {
+        modalText.innerHTML = '';
+        modalText.append(descriptionText)
       }
       
       const modalBackground = document.querySelector('.modalBackground');
@@ -107,21 +111,6 @@ libraryApp.modalFunction = (book) => {
   })
 }
 
-
-  
 // Put the init function at the bottom of our JS script file. 
 
 libraryApp.init()
-
-// Add event listener for "click" to the get more books button
-
-
-// STRETCH GOAL PSEUDOCODE
-// Add eventlistener to click on book cover img needs event.target?
-//  - Get the key property value from the book object
-//  - make an API call to the openlibrary.works/${key}
-//      -store the description property in a variable
-//  - display the description/summary of the book in a modal
-//      -Create a div for the modalBackground
-//      -Create a div for the modal itself
-//      -on "Click" change display to visible for background and modal

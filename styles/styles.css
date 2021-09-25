@@ -22,27 +22,43 @@ img {
 }
   
 body {
+    font-size: 125%;
     background-image: url("../assets/background.svg");
-    background-size: cover;
+    background-repeat: repeat;
     font-family: 'Poppins', sans-serif;
+    color: aliceblue;
+    position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 h1 {
     font-family: 'DM Sans', sans-serif;
     text-transform: lowercase;
-    color: rgb(0, 0, 0);
+    font-size: 2.8rem;
+    padding: 20px;
+    margin: 0;
 }
 
 button {
-    font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  background-color: rebeccapurple;
+  border-style: none;
+  width: 35%;
+  padding: 5px;
+  color: aliceblue;
+  border-radius: 25px;
 }
 
-header {
+.header-container {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 40vh;
 }
 
 .logo {
@@ -68,13 +84,91 @@ header {
     position: absolute;
     top: 50%;
     left: 50%;
-    padding: 25px;
     border-radius: 25px;
     transform: translate(-50%, -50%);
     z-index: 20;
-    
+    color: black;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.modalText {
+  padding: 20px;
 }
 
 .show {
     display: block;
+}
+
+.infoMenu {
+  display: none;
+}
+
+ul {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+li {
+  width: calc(25% - 30px);
+  margin: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.bookForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bookForm label {
+  width: 100%;
+  text-align: center;
+}
+
+.bookForm select {
+  width: 50%;
+  margin: 20px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 25px;
+  border-style: none;
+}
+
+.bookTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.bookAuthor {
+  margin: 5px;
+  font-size: 1rem
+}
+
+.coverImage {
+  object-fit: contain;
+  height: 350px;
+}
+
+.coverImage:hover,
+.coverImage:focus {
+  opacity: 80%;
+  cursor: grab;
+}
+
+.moreBooks {
+  display: flex;
+  justify-content: center;
+}
+
+.viewMore {
+  display: none;
+}
+
+footer {
+  text-align: center;
 }
