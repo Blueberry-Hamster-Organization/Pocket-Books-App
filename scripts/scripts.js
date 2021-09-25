@@ -7,6 +7,7 @@ libraryApp.ulElement = document.querySelector('.bookResult');
 
 libraryApp.init = () => {
 libraryApp.getBooks();
+libraryApp.infoIcon();
 }
 
   
@@ -30,6 +31,7 @@ libraryApp.getBooks = () => {
       libraryApp.bookDisplay();
       libraryApp.moreBooksButton.classList.toggle('show')
       libraryApp.moreBooksButton.classList.remove('viewMore')
+      
     })
   });
 } 
@@ -77,37 +79,56 @@ libraryApp.modalFunction = (book) => {
   
   const bookCover = document.getElementById(book.key)
   bookCover.addEventListener('click', () => {
-    // console.log(event.target);
     fetch(`https://openlibrary.org${book.key}.json`)
       .then((response) => {
       return response.json()
     }).then((jsonResponse) => {
+      
       const bookDescription = jsonResponse.description;
       const descriptionText = bookDescription.value;
       const errorText = "Sorry! No description exists on Open Library for this book. Maybe you could add it!"
+      
 
       const modalText = document.querySelector('.modalText')
       if (descriptionText == undefined && bookDescription == undefined) {
         modalText.innerHTML = '';
-        modalText.append(errorText)
-        ;
+        modalText.append(errorText);
+        
+        
       } else if (descriptionText == undefined) {
         modalText.innerHTML = '';
         modalText.append(bookDescription);
+        
+        
       } else {
         modalText.innerHTML = '';
         modalText.append(descriptionText)
+        
       }
+
       
       const modalBackground = document.querySelector('.modalBackground');
       modalBackground.classList.toggle('show');
 
-      
-      const closeButton = document.querySelector('#closeModalButton');
+      const closeButton = document.querySelector('.closeModalButton');
       closeButton.addEventListener('click', () => {
         modalBackground.classList.remove('show');
       })
     })
+  })
+}
+
+// function to display and hide Menu section
+libraryApp.infoIcon = () => {
+  const infoIcon = document.querySelector('.infoIcon');
+  const infoMenu = document.querySelector('.infoMenu');
+  infoIcon.addEventListener('click', () => {
+    infoMenu.classList.toggle('hide');
+  })
+
+  const closeInfoMenu = document.querySelector('.closeInfoMenu');
+  closeInfoMenu.addEventListener('click', () => {
+    infoMenu.classList.toggle('hide');
   })
 }
 
