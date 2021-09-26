@@ -65,6 +65,7 @@ libraryApp.bookDisplay = () => {
     libraryApp.ulElement.append(newLiElement)
     libraryApp.modalFunction(book)
     
+    // Handle error when there are no more books to be displayed
     if (libraryApp.hundredBooks.length === 0)  {
       libraryApp.moreBooksButton.textContent = "Sorry No More Books!"
     } else {
