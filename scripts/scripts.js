@@ -31,6 +31,7 @@ libraryApp.getBooks = () => {
       libraryApp.bookDisplay();
       libraryApp.moreBooksButton.classList.toggle('show')
       libraryApp.moreBooksButton.classList.remove('viewMore')
+      libraryApp.arrowUp.classList.remove('hide')
       
     })
   });
@@ -73,6 +74,8 @@ libraryApp.moreBooksButton.addEventListener('click', () => {
   libraryApp.bookDisplay();
 });
 
+// Display an arrow to help the user get back to the top of the page
+libraryApp.arrowUp = document.querySelector('.arrowUp')
 
 libraryApp.modalFunction = (book) => {
   // make API call using book key
@@ -101,7 +104,6 @@ libraryApp.modalFunction = (book) => {
             modalText.append(errorText);
         }
 
-      
       const modalBackground = document.querySelector('.modalBackground');
       modalBackground.classList.toggle('show');
 
@@ -109,6 +111,7 @@ libraryApp.modalFunction = (book) => {
       closeButton.addEventListener('click', () => {
         modalBackground.classList.remove('show');
       })
+      
     })
   })
 }

@@ -22,17 +22,17 @@
         <img class="infoIcon" src="./assets/icons8-info.svg" alt="">
         <div class="infoMenu hide">
           <span class="closeInfoMenu"><img class="modalIcon" src="./assets/times.svg" alt="an X icon"></span>
-          <p>Created by Elisabeth Winter & Azalia Loeciano</p>
-          <p>Background<a href="https://www.vecteezy.com/free-vector/grunge"> Grunge Vectors by Vecteezy</a></p>
-          <p>API by <a href="https://openlibrary.org/"> The Open Library</a></p>
+          <p>Created by <br><a href="https://github.com/WinterisCoding">Elisabeth Winter</a><br> &<br> <a href="https://github.com/azalialoe">Azalia Loeciano</a></p>
+          <p>Background by: <br><a href="https://www.vecteezy.com/members/carterart">Carterart on Vecteezy</a></p>
+          <p>API by: <br><a href="https://openlibrary.org/"> The Open Library</a></p>
         </div> <!-- end of InfoMenu-->
-        <p>Welcome to..</p>  
+        <p class="welcome">Welcome to..</p>  
         <h1>Pocket Books</h1>
-        <p>Made possible by openlibrary.org </p>
+        <p class="attribution">Made possible by openlibrary.org </p>
       </div> <!-- end of header container-->
     </header> <!-- end of header-->
     
-    <main>
+    <main id="main">
       <div class="wrapper">
 
         <div class="modalBackground">
@@ -48,9 +48,16 @@
             <select name="bookCategory" id="bookCategory">
               <option value="fantasy">Fantasy</option>
               <option value="horror">Horror</option>
+              <option value="humor">Humor</option>
+              <option value="magic">Magic</option>
+              <option value="mystery_and_detective_stories">Mystery</option>
               <option value="romance">Romance</option>
               <option value="science_fiction">Science-fiction</option>
-              <option value="humor">Humor</option>
+              <option value="thriller">Thriller</option>
+              <option value="young_adult_fiction">Young Adult</option>
+              <option value="1000blackgirlbooks">1000 Black Girl Books</option>
+              <option value="lgbtq_science_fiction_&_fantasy">LGBTQ Science-fiction</option>
+              <option value="women_authors">Written By Women</option>
             </select>
             <button>Submit</button>
           </form> <!-- end of bookForm-->
@@ -62,12 +69,15 @@
         </section> <!-- end of result section-->
         <section class="moreBooks">
           <button class="viewMore">Get More Books!</button>
+          <div class="arrowUp hide">
+          <a href="./index.html#main">↑</a>
+          </div>
         </section>
       </div><!-- end of wrapper-->
     </main> <!-- end of main-->
 
     <footer class ="wrapper">
-        <p>Created at <a href="junocollege.com">Juno College</a></p>
+        <p>Created at <a href="https://junocollege.com/">Juno College of Technology © 2021</a></p>
     </footer> <!-- end of footer-->
 
     <script src="./scripts/scripts.js"></script>

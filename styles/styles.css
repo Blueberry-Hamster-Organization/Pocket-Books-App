@@ -11,6 +11,11 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 /* /* font-family: 'DM Sans', sans-serif; */
 /* font-family: 'Poppins', sans-serif; */
 
+/* **************************** */
+/*       General Styles         */
+/* **************************** */
+
+
 .wrapper {
     max-width: 1900px;
     width: 90%;
@@ -36,12 +41,38 @@ a {
   color: inherit;
 }
 
+a:hover,
+a:focus {
+  color:rgb(41, 187, 187)
+}
+
 h1 {
     font-family: 'DM Sans', sans-serif;
     text-transform: lowercase;
     font-size: 2.8rem;
     padding: 20px;
     margin: 0;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+p {
+  line-height: 2rem;
+}
+
+ul {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+li {
+  width: calc(25% - 30px);
+  margin: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 button {
@@ -53,6 +84,12 @@ button {
   color: aliceblue;
   border-radius: 25px;
 }
+
+
+
+/* **************************** */
+/*       Header Styles         */
+/* **************************** */
 
 .header-container {
     padding: 20px;
@@ -70,11 +107,32 @@ button {
 }
 
 .infoIcon {
-  height: 50px;
+  height: 35px;
   position: absolute;
   top: 30px;
   left: 44%;
 }
+
+.infoMenu {
+  position: absolute;
+  background-color: ivory;
+  color: black;
+  padding: 20px;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  text-align: center;
+  max-width: 400px;
+}
+
+.infoMenu p {
+  line-height: 3;
+}
+
+/* **************************** */
+/*       Modal Styles         */
+/* **************************** */
+
 
 .modalBackground {
     display: none;
@@ -110,44 +168,9 @@ button {
   padding: 10px 48px;
 }
 
-.show {
-    display: block;
-}
-
-.hide {
-  display: none;
-}
-
-.infoMenu {
-  position: absolute;
-  background-color: ivory;
-  color: black;
-  padding: 20px;
-  height: 100vh;
-  top: 0;
-  right: 0;
-  text-align: center;
-  max-width: 400px;
-}
-
-.infoMenu p {
-  line-height: 6;
-}
-
-ul {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-
-li {
-  width: calc(25% - 30px);
-  margin: 20px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+/* **************************** */
+/*          Form Styles         */
+/* **************************** */
 
 .bookForm {
   display: flex;
@@ -197,6 +220,27 @@ li {
 
 .viewMore {
   display: none;
+}
+
+.arrowUp {
+  font-size: 3rem;
+  position: absolute;
+  right: 25%;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 2.2rem;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+display: none;
 }
 
 footer {
