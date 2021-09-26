@@ -84,24 +84,22 @@ libraryApp.modalFunction = (book) => {
       return response.json()
     }).then((jsonResponse) => {
       
-      const bookDescription = jsonResponse.description;
-      const descriptionText = bookDescription.value;
+      // conditional statement to display error message when no description is available
       const errorText = "Sorry! No description exists on Open Library for this book. Maybe you could add it!"
-      
-
-      const modalText = document.querySelector('.modalText')
-      if (typeof descriptionText == undefined && typeof bookDescription == undefined) {
-        modalText.innerHTML = '';
-        modalText.append(errorText);
-        
-      } else if (descriptionText == undefined) {
-        modalText.innerHTML = '';
-        modalText.append(bookDescription);
-        
-      } else {
-        modalText.innerHTML = '';
-        modalText.append(descriptionText)
-      }
+      const modalText = document.querySelector('.modalText');
+        if (jsonResponse.description != undefined){
+            if(jsonResponse.description.value != undefined){
+                modalText.innerHTML = '';
+                modalText.append(jsonResponse.description.value);
+            }else{
+                modalText.innerHTML = '';
+                modalText.append(jsonResponse.description);
+            }
+        }
+        else{
+            modalText.innerHTML = '';
+            modalText.append(errorText);
+        }
 
       
       const modalBackground = document.querySelector('.modalBackground');
