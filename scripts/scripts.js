@@ -90,20 +90,17 @@ libraryApp.modalFunction = (book) => {
       
 
       const modalText = document.querySelector('.modalText')
-      if (descriptionText == undefined && bookDescription == undefined) {
+      if (typeof descriptionText == undefined && typeof bookDescription == undefined) {
         modalText.innerHTML = '';
         modalText.append(errorText);
-        
         
       } else if (descriptionText == undefined) {
         modalText.innerHTML = '';
         modalText.append(bookDescription);
         
-        
       } else {
         modalText.innerHTML = '';
         modalText.append(descriptionText)
-        
       }
 
       
