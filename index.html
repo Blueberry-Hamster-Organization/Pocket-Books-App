@@ -5,44 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/styles.css">
-    <title>My Little Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Poppins&display=swap" rel="stylesheet">
+
+    <title>Pocket Books</title>
 </head>
 
 <body>
-    <header>
+    <header class="wrapper">
+      <div class="header-container">
+
+        <div class="logo">
+          <img src="./assets/bookgif.gif" alt="animated book pages">
+        </div>
+        <img class="infoIcon" src="./assets/icons8-info.svg" alt="">
+        <div class="infoMenu hide">
+          <span class="closeInfoMenu"><img class="modalIcon" src="./assets/times.svg" alt="an X icon"></span>
+          <p>Created by <br><a href="https://github.com/WinterisCoding">Elisabeth Winter</a><br> &<br> <a href="https://github.com/azalialoe">Azalia Loeciano</a></p>
+          <p>Background by: <br><a href="https://www.vecteezy.com/members/carterart">Carterart on Vecteezy</a></p>
+          <p>API by: <br><a href="https://openlibrary.org/"> The Open Library</a></p>
+        </div> <!-- end of InfoMenu-->
+        <p class="welcome">Welcome to..</p>  
         <h1>Pocket Books</h1>
+        <p>Made Possible by <a href="https://openlibrary.org/">The Open Library</a></p>
+      </div> <!-- end of header container-->
     </header> <!-- end of header-->
     
-    <main>
-        <form action="submit" method="#" class="bookForm" autocomplete="off" name="bookForm">
+    <main id="main">
+      <div class="wrapper">
+
+        <div class="modalBackground">
+          <div class="modalContent">
+            <span class="closeModalButton"><img class="modalIcon" src="./assets/times.svg" alt="an X icon"></span>
+            <p class="modalText"></p>
+          </div> <!-- end of modal Background-->
+        </div> <!-- end of Modal Background-->
         
+        <section class="formSection">
+          <form action="submit" method="#" class="bookForm" autocomplete="off" name="bookForm">
             <label for="bookForm">What do you want to read?</label>
             <select name="bookCategory" id="bookCategory">
-                <option value="fantasy">Fantasy</option>
-                <option value="horror">Horror</option>
-                <option value="romance">Romance</option>
-                <option value="science_fiction">Science-fiction</option>
-                <option value="humor">Humor</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="horror">Horror</option>
+              <option value="humor">Humor</option>
+              <option value="magic">Magic</option>
+              <option value="mystery_and_detective_stories">Mystery</option>
+              <option value="romance">Romance</option>
+              <option value="science_fiction">Science-fiction</option>
+              <option value="thriller">Thriller</option>
+              <option value="young_adult_fiction">Young Adult</option>
+              <option value="1000blackgirlbooks">1000 Black Girl Books</option>
+              <option value="lgbtq_science_fiction_&_fantasy">LGBTQ Science-fiction</option>
+              <option value="women_authors">Written By Women</option>
             </select>
             <button>Submit</button>
-        </form> <!-- end of bookForm-->
-    
+          </form> <!-- end of bookForm-->
+        </section> <!-- end of formSection-->
+        
         <section class="result">
-            <ul class="bookResult"> 
-              
-                
-            </ul>
+          <ul class="bookResult"> 
+          </ul>
         </section> <!-- end of result section-->
         <section class="moreBooks">
           <button class="viewMore">Get More Books!</button>
+          <div class="arrowUp hide">
+          <a href="./index.html#main">↑</a>
+          </div>
         </section>
+      </div><!-- end of wrapper-->
     </main> <!-- end of main-->
-    
 
-    <footer>
-        <p>Created at <a href="junocollege.com">Juno College</a></p>
+    <footer class ="wrapper">
+        <p>Created at <a href="https://junocollege.com/">Juno College of Technology © 2021</a></p>
     </footer> <!-- end of footer-->
-
 
     <script src="./scripts/scripts.js"></script>
 </body>

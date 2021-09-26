@@ -7,6 +7,7 @@ libraryApp.ulElement = document.querySelector('.bookResult');
 
 libraryApp.init = () => {
 libraryApp.getBooks();
+libraryApp.infoIcon();
 }
 
   
@@ -28,6 +29,10 @@ libraryApp.getBooks = () => {
       libraryApp.ulElement.innerHTML = '';
       libraryApp.hundredBooks = jsonResponse.works;
       libraryApp.bookDisplay();
+      libraryApp.moreBooksButton.classList.toggle('show')
+      libraryApp.moreBooksButton.classList.remove('viewMore')
+      libraryApp.arrowUp.classList.remove('hide')
+      
     })
   });
 } 
@@ -37,7 +42,7 @@ libraryApp.bookDisplay = () => {
   const tenBooks = [];
   
   // forloop to display 10 results at a time and keep adding 10
-  for(let i = 0; i < 10; i++) {
+  for(let i = 0; i < 8; i++) {
     tenBooks.push(libraryApp.hundredBooks.shift());
   }
   //  - Write a for each loop, that will create a new Li element for each result,
@@ -47,42 +52,91 @@ libraryApp.bookDisplay = () => {
     const bookTitle = book.title;
     const bookAuthor = book.authors[0].name;
     const bookCover = `http://covers.openlibrary.org/b/id/${book.cover_id}.jpg`;
+    const bookKey = book.key;
+    
     const newLiElement = document.createElement('li');
     newLiElement.innerHTML = 
-    `<li>
-    <img src="${bookCover}" alt="Cover for ${bookTitle}">
+    `
+    <img src="${bookCover}" alt="Cover for ${bookTitle}" class="coverImage" id=${bookKey} tabindex="0">
     <p class="bookTitle">${bookTitle}</p>
     <p class="bookAuthor">${bookAuthor}</p>
-    </li>  
     `
     //  - Append the new <Li> elements to the page
-    
     libraryApp.ulElement.append(newLiElement)
+    libraryApp.modalFunction(book)
+    
+    // Handle error when there are no more books to be displayed
+    if (libraryApp.hundredBooks.length === 0)  {
+      libraryApp.moreBooksButton.textContent = "Sorry No More Books!"
+    } else {
+      libraryApp.moreBooksButton.textContent = "Get More Books!"
+    }
+    
   });
-};
+}
 
+
+// Get more books displayed each time we click the get more books button
 libraryApp.moreBooksButton = document.querySelector('.viewMore');
 libraryApp.moreBooksButton.addEventListener('click', () => {
-    libraryApp.bookDisplay();
-  });
+  libraryApp.bookDisplay();
+});
 
+// Display an arrow to help the user get back to the top of the page
+libraryApp.arrowUp = document.querySelector('.arrowUp')
 
-
-
+libraryApp.modalFunction = (book) => {
+  // make API call using book key
   
+  const bookCover = document.getElementById(book.key)
+  bookCover.addEventListener('click', () => {
+    fetch(`https://openlibrary.org${book.key}.json`)
+      .then((response) => {
+      return response.json()
+    }).then((jsonResponse) => {
+      
+      // conditional statement to display error message when no description is available
+      const errorText = "Sorry! No description exists on Open Library for this book. Maybe you could add it!"
+      const modalText = document.querySelector('.modalText');
+        if (jsonResponse.description != undefined){
+            if(jsonResponse.description.value != undefined){
+                modalText.innerHTML = '';
+                modalText.append(jsonResponse.description.value);
+            }else{
+                modalText.innerHTML = '';
+                modalText.append(jsonResponse.description);
+            }
+        }
+        else{
+            modalText.innerHTML = '';
+            modalText.append(errorText);
+        }
+
+      const modalBackground = document.querySelector('.modalBackground');
+      modalBackground.classList.toggle('show');
+
+      const closeButton = document.querySelector('.closeModalButton');
+      closeButton.addEventListener('click', () => {
+        modalBackground.classList.remove('show');
+      })
+    })
+  })
+}
+
+// function to display and hide Menu section
+libraryApp.infoIcon = () => {
+  const infoIcon = document.querySelector('.infoIcon');
+  const infoMenu = document.querySelector('.infoMenu');
+  infoIcon.addEventListener('click', () => {
+    infoMenu.classList.toggle('hide');
+  })
+
+  const closeInfoMenu = document.querySelector('.closeInfoMenu');
+  closeInfoMenu.addEventListener('click', () => {
+    infoMenu.classList.toggle('hide');
+  })
+}
+
 // Put the init function at the bottom of our JS script file. 
 
 libraryApp.init()
-
-// Add event listener for "click" to the get more books button
-
-
-// STRETCH GOAL PSEUDOCODE
-// Add eventlistener to click on book cover img needs event.target?
-//  - Get the key property value from the book object
-//  - make an API call to the openlibrary.works/${key}
-//      -store the description property in a variable
-//  - display the description/summary of the book in a modal
-//      -Create a div for the modalBackground
-//      -Create a div for the modal itself
-//      -on "Click" change display to visible for background and modal
