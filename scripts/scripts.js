@@ -64,6 +64,13 @@ libraryApp.bookDisplay = () => {
     //  - Append the new <Li> elements to the page
     libraryApp.ulElement.append(newLiElement)
     libraryApp.modalFunction(book)
+    
+    if (libraryApp.hundredBooks.length === 0)  {
+      libraryApp.moreBooksButton.textContent = "Sorry No More Books!"
+    } else {
+      libraryApp.moreBooksButton.textContent = "Get More Books!"
+    }
+    
   });
 }
 
@@ -111,7 +118,6 @@ libraryApp.modalFunction = (book) => {
       closeButton.addEventListener('click', () => {
         modalBackground.classList.remove('show');
       })
-      
     })
   })
 }

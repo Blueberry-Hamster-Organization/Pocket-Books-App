@@ -246,3 +246,53 @@ display: none;
 footer {
   text-align: center;
 }
+
+/* **************************** */
+/*        Media Queries         */
+/* **************************** */
+
+@media (max-width: 970px) {
+  li {
+    width: calc(33% - 30px)
+  }
+
+  .modalContent {
+    width: 75%;
+  }
+}
+
+@media (max-width: 700px) {
+  li {
+    width: calc(50% - 30px);
+  }
+
+  .bookTitle {
+    margin-top: 10px;
+  }
+
+  .arrowUp {
+    right: 20%;
+  }
+
+  .modalContent {
+    width: 80%;
+  }
+
+  .modalText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 550px) {
+  li {
+    width: 100%;
+  }
+
+  .arrowUp {
+    bottom: 85px;
+  }
+
+  .logo {
+    padding: 10px;
+  }
+}
